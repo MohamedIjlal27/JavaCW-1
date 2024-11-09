@@ -15,7 +15,7 @@ public class AuroraSkinCareApp {
         while (true) {
             displayMenu();
             int choice = scanner.nextInt();
-            scanner.nextLine();  // consume newline
+            scanner.nextLine();
             switch (choice) {
                 case 1 -> makeAppointment();
                 case 2 -> updateAppointment();
@@ -147,13 +147,21 @@ public class AuroraSkinCareApp {
         while (true) {
             System.out.print("Select Time Slot by number: ");
             int slotIndex = scanner.nextInt() - 1;
+
             if (slotIndex >= 0 && slotIndex < availableSlots.size()) {
                 time = availableSlots.get(slotIndex);
-                break;
+
+                // Check if the time slot is already booked for the selected doctor and date
+                if (!clinic.isTimeSlotAvailable(doctor, date, time)) {
+                    System.out.println("The selected time slot is already booked. Please choose a different time slot.");
+                } else {
+                    break;  // Exit the loop if the time slot is available
+                }
             } else {
                 System.out.println("Invalid time slot selection. Please try again.");
             }
         }
+
 
         Treatment treatment = null;
         while (treatment == null) {

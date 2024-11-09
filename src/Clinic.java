@@ -54,4 +54,16 @@ public class Clinic {
         }
         return filteredAppointments;
     }
+
+    public boolean isTimeSlotAvailable(Doctor doctor, LocalDate date, LocalTime time) {
+
+        for (Appointment appointment : appointments) {
+            if (appointment.getDoctor().equals(doctor) &&
+                    appointment.getDate().equals(date) &&
+                    appointment.getTime().equals(time)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

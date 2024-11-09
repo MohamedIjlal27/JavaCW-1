@@ -10,7 +10,7 @@ public class Doctor {
     private Map<DayOfWeek, List<LocalTime>> schedule;
 
     public Doctor(String name) {
-        this.name = name;
+            this.name = name;
         this.schedule = new EnumMap<>(DayOfWeek.class);
         initializeSchedule();
     }
@@ -57,14 +57,5 @@ public class Doctor {
     // Method to get the full schedule
     public Map<DayOfWeek, List<LocalTime>> getSchedule() {
         return schedule;
-    }
-
-    // Method to get all available slots across all days
-    public List<LocalTime> getAvailableSlots() {
-        List<LocalTime> allAvailableSlots = new ArrayList<>();
-        for (List<LocalTime> slots : schedule.values()) {
-            allAvailableSlots.addAll(slots);
-        }
-        return allAvailableSlots;
     }
 }
